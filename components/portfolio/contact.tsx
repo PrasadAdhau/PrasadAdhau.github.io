@@ -12,10 +12,13 @@ import { Mail, Send, CheckCircle, Phone, Linkedin, MapPin } from "lucide-react"
 export function Contact() {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [errorMessage, setErrorMessage] = useState("")
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsLoading(true)
+    setErrorMessage("")
+    setIsSubmitted(false)
 
     const form = e.currentTarget
     const formData = new FormData(form)
@@ -29,13 +32,18 @@ export function Contact() {
         body: formData,
       })
 
-      if (!response.ok) {
-        throw new Error("Failed to send message")
+      const result = await response.json().catch(() => null)
+
+      if (!response.ok || (result && result.success === "false")) {
+        throw new Error(result?.message || "Failed to send message")
       }
 
       setIsSubmitted(true)
       form.reset()
       setTimeout(() => setIsSubmitted(false), 3000)
+    } catch (error) {
+      console.error("Contact form submission failed:", error)
+      setErrorMessage("Message could not be sent. Please try again or email me directly at prasad.adhau02@gmail.com.")
     } finally {
       setIsLoading(false)
     }
@@ -186,6 +194,7 @@ export function Contact() {
                   </>
                 )}
               </Button>
+              {errorMessage ? <p className="text-sm text-red-500">{errorMessage}</p> : null}
             </form>
           </Motion>
         </div>
