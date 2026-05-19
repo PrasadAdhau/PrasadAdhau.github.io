@@ -1,54 +1,13 @@
 "use client"
 
 import React from "react"
-
-import { useState } from "react"
 import { Motion } from "@/components/motion"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Mail, Send, CheckCircle, Phone, Linkedin, MapPin } from "lucide-react"
+import { Mail, Send, Phone, Linkedin, MapPin } from "lucide-react"
 
 export function Contact() {
-  const [isSubmitted, setIsSubmitted] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
-  const [errorMessage, setErrorMessage] = useState("")
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setIsLoading(true)
-    setErrorMessage("")
-    setIsSubmitted(false)
-
-    const form = e.currentTarget
-    const formData = new FormData(form)
-
-    try {
-      const response = await fetch("https://formsubmit.co/ajax/prasad.adhau02@gmail.com", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-        },
-        body: formData,
-      })
-
-      const result = await response.json().catch(() => null)
-
-      if (!response.ok || (result && result.success === "false")) {
-        throw new Error(result?.message || "Failed to send message")
-      }
-
-      setIsSubmitted(true)
-      form.reset()
-      setTimeout(() => setIsSubmitted(false), 3000)
-    } catch (error) {
-      console.error("Contact form submission failed:", error)
-      setErrorMessage("Message could not be sent. Please try again or email me directly at prasad.adhau02@gmail.com.")
-    } finally {
-      setIsLoading(false)
-    }
-  }
-
   return (
     <section id="contact" className="py-20 md:py-32">
       <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
@@ -124,12 +83,14 @@ export function Contact() {
           {/* Contact Form */}
           <Motion animation="fadeInRight" delay={0.2}>
             <form
-              onSubmit={handleSubmit}
+              action="https://formsubmit.co/prasad.adhau02@gmail.com"
+              method="POST"
               className="bg-card rounded-2xl p-6 md:p-8 border border-border space-y-6 w-full max-w-xl mx-auto lg:mx-0"
             >
               <input type="hidden" name="_subject" value="New portfolio contact message" />
               <input type="hidden" name="_template" value="table" />
               <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_next" value="https://PrasadAdhau.github.io/#contact" />
 
               <div className="space-y-2">
                 <label htmlFor="name" className="text-sm font-medium text-foreground">
@@ -175,26 +136,10 @@ export function Contact() {
               <Button
                 type="submit"
                 className="w-full group bg-brand-accent hover:bg-brand-accent/90"
-                disabled={isLoading || isSubmitted}
               >
-                {isSubmitted ? (
-                  <>
-                    <CheckCircle className="w-4 h-4 mr-2" />
-                    Message Sent!
-                  </>
-                ) : isLoading ? (
-                  <>
-                    <div className="w-4 h-4 mr-2 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
-                    Sending...
-                  </>
-                ) : (
-                  <>
-                    <Send className="w-4 h-4 mr-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                    Send Message
-                  </>
-                )}
+                <Send className="w-4 h-4 mr-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                Send Message
               </Button>
-              {errorMessage ? <p className="text-sm text-red-500">{errorMessage}</p> : null}
             </form>
           </Motion>
         </div>
