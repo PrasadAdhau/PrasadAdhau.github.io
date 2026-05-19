@@ -1,0 +1,144 @@
+"use client"
+
+import Image from "next/image"
+import { Motion } from "@/components/motion"
+import { Button } from "@/components/ui/button"
+import { withBasePath } from "@/lib/paths"
+import { Github, ExternalLink, Database, Cloud, BarChart3, Workflow } from "lucide-react"
+
+const projects = [
+  {
+    title: "NeuroExplain: Explainable Brain Tumor Analysis",
+    description:
+      "Built an end-to-end AI-powered medical imaging system for brain tumor segmentation and explainable diagnosis using 3D U-Net, Grad-CAM, and RAG-based LLM reporting. Designed scalable deep learning pipelines for MRI analysis, automated report generation, and clinically interpretable visual explanations aligned with tumor regions.",
+    category: "AI + Medical Imaging",
+    icon: Workflow,
+    tags: ["Python", "PyTorch", "MONAI", "3D U-Net", "Grad-CAM", "LLMs", "RAG", "Hugging Face", "Medical Imaging", "NumPy"],
+    githubUrl: "#",
+    image: "/images/NeuroExplain.png",
+  },
+  {
+    title: "Amazon Review Sentiment Analyzer",
+    description:
+      "Developed an NLP-based sentiment analysis platform to process large-scale customer reviews using BERT and aspect-based analysis. Built real-time inference workflows and interactive Python GUIs to identify customer sentiment patterns, recurring feedback themes, and product insights from 50K+ reviews.",
+    category: "NLP",
+    icon: Cloud,
+    tags: ["Python", "BERT", "Hugging Face", "NLP", "TF-IDF", "scikit-learn", "Pandas", "Matplotlib", "Tkinter"],
+    githubUrl: "https://github.com/PrasadAdhau/scamazon-sentiment",
+    image: "/images/scamazon.png",
+  },
+  {
+    title: "Flight Network Dashboard",
+    description:
+      "Created an interactive graph analytics dashboard to visualize airport connectivity and route networks using Neo4j and D3.js. Implemented dynamic Cypher-based querying, real-time filtering, and advanced graph interactions including zoom, pan, and tooltips for large-scale network exploration.",
+    category: "Graph Analytics",
+    icon: BarChart3,
+    tags: ["Neo4j", "Cypher", "JavaScript", "D3.js", "Node.js", "Graph Databases", "HTML/CSS"],
+    githubUrl: "https://github.com/PrasadAdhau/neo4j-flightDashboard-PrasadAdhau",
+    image: "/images/Neo4j.png",
+  },
+  {
+    title: "Prediction of Early Readmission of Diabetes Patients",
+    description:
+      "Built a machine learning pipeline to predict early hospital readmissions using ensemble learning techniques on healthcare datasets containing 15K+ patient records. Implemented preprocessing, SMOTE balancing, feature engineering, hyperparameter tuning, and comparative evaluation across multiple ML models.",
+    category: "Machine Learning",
+    icon: Database,
+    tags: ["Python", "Random Forest", "XGBoost", "scikit-learn", "SMOTE", "Pandas", "NumPy", "Machine Learning", "Data Analysis"],
+    githubUrl: "https://github.com/PrasadAdhau/Diabetic-Readmission-Prediction",
+    image: "/images/prediction.jpeg",
+  },
+]
+
+export function Projects() {
+  return (
+    <section id="projects" className="py-20 md:py-32 bg-muted/30">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
+        <Motion animation="fadeInUp">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+            My Projects
+          </h2>
+          <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-16">
+            A collection of projects I've built and contributed to.
+          </p>
+        </Motion>
+
+        <div className="grid md:grid-cols-2 gap-6 lg:gap-8 items-stretch">
+          {projects.map((project, index) => (
+            <Motion
+              key={project.title}
+              animation="fadeInUp"
+              delay={0.1 + index * 0.1}
+              className="h-full"
+            >
+              <div className="group h-full bg-card rounded-2xl border border-border overflow-hidden hover:border-brand-accent/50 hover:shadow-xl transition-all duration-500 flex flex-col">
+                {/* Project Header with Image */}
+                <div className="h-48 bg-gradient-to-br from-brand-accent/10 to-brand-accent/5 relative overflow-hidden">
+                  {project.image ? (
+                    <Image
+                      src={withBasePath(project.image || "/placeholder.svg")}
+                      alt={project.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center">
+                      <project.icon className="w-16 h-16 text-brand-accent/30 group-hover:scale-110 transition-transform duration-500" />
+                    </div>
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute top-4 left-4">
+                    <span className="text-xs font-medium text-brand-accent bg-background/90 backdrop-blur-sm px-3 py-1 rounded-full">
+                      {project.category}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Project Content */}
+                <div className="p-6 flex-1 flex flex-col">
+                  <h3 className="text-xl font-semibold text-foreground mb-2 group-hover:text-brand-accent transition-colors">
+                    {project.title}
+                  </h3>
+                  <p className="text-muted-foreground text-sm mb-4 leading-relaxed">
+                    {project.description}
+                  </p>
+
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {project.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="text-xs px-2 py-1 bg-muted rounded-md text-muted-foreground"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Actions */}
+                  <div className="flex gap-3 mt-auto">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="w-full group/btn bg-transparent text-brand-accent border-brand-accent/40 hover:border-brand-accent hover:text-brand-accent hover:bg-brand-accent/10"
+                      asChild
+                    >
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Github className="w-4 h-4 mr-2 group-hover/btn:rotate-12 transition-transform" />
+                        View on GitHub
+                      </a>
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </Motion>
+          ))}
+        </div>
+
+      </div>
+    </section>
+  )
+}
