@@ -8,6 +8,21 @@ import { Textarea } from "@/components/ui/textarea"
 import { Mail, Send, Phone, Linkedin, MapPin } from "lucide-react"
 
 export function Contact() {
+  const handleMailtoSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    const form = e.currentTarget
+    const formData = new FormData(form)
+    const name = String(formData.get("name") || "").trim()
+    const email = String(formData.get("email") || "").trim()
+    const message = String(formData.get("message") || "").trim()
+
+    const subject = encodeURIComponent(`Portfolio Contact: ${name || "New Message"}`)
+    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)
+
+    window.location.href = `mailto:prasad.adhau02@gmail.com?subject=${subject}&body=${body}`
+  }
+
   return (
     <section id="contact" className="py-20 md:py-32">
       <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
@@ -83,15 +98,9 @@ export function Contact() {
           {/* Contact Form */}
           <Motion animation="fadeInRight" delay={0.2}>
             <form
-              action="https://formsubmit.co/prasad.adhau02@gmail.com"
-              method="POST"
+              onSubmit={handleMailtoSubmit}
               className="bg-card rounded-2xl p-6 md:p-8 border border-border space-y-6 w-full max-w-xl mx-auto lg:mx-0"
             >
-              <input type="hidden" name="_subject" value="New portfolio contact message" />
-              <input type="hidden" name="_template" value="table" />
-              <input type="hidden" name="_captcha" value="false" />
-              <input type="hidden" name="_next" value="https://PrasadAdhau.github.io/#contact" />
-
               <div className="space-y-2">
                 <label htmlFor="name" className="text-sm font-medium text-foreground">
                   Name
@@ -138,8 +147,11 @@ export function Contact() {
                 className="w-full group bg-brand-accent hover:bg-brand-accent/90"
               >
                 <Send className="w-4 h-4 mr-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                Send Message
+                Open Email Draft
               </Button>
+              <p className="text-sm text-muted-foreground">
+                This opens your email app with a pre-filled message to prasad.adhau02@gmail.com.
+              </p>
             </form>
           </Motion>
         </div>
