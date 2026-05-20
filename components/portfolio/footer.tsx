@@ -21,7 +21,7 @@ export function Footer() {
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-full overflow-hidden relative">
                 <Image
-                  src={withBasePath("/images/PrasadAdhau.png")}
+                  src={withBasePath("/images/Profile.png")}
                   alt="Prasad"
                   fill
                   className="object-cover"

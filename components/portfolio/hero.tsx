@@ -38,7 +38,7 @@ export function Hero() {
           {/* Profile Photo - First on mobile, second on desktop */}
           <Motion animation="scaleIn" delay={0.3} className="order-1 lg:order-2">
             <div className="relative flex justify-center lg:justify-end">
-              <div className="w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-[22rem] lg:h-[22rem] xl:w-[26rem] xl:h-[26rem] relative">
+              <div className="w-72 h-72 sm:w-80 sm:h-80 md:w-88 md:h-88 lg:w-[24rem] lg:h-[24rem] xl:w-[28rem] xl:h-[28rem] relative">
                 {/* Decorative rings */}
                 <div className="absolute inset-0 rounded-full border-2 border-brand-accent/20 border-t-brand-accent/60 border-r-brand-accent/50 animate-spin [animation-duration:20s]" />
                 <div className="absolute inset-4 rounded-full border-2 border-brand-accent/30 border-b-brand-accent/70 border-l-brand-accent/50 animate-[spin_15s_linear_infinite_reverse]" />
@@ -46,10 +46,10 @@ export function Hero() {
                 {/* Profile Photo */}
                 <div className="absolute inset-8 rounded-full bg-gradient-to-br from-primary/20 to-primary/5 overflow-hidden">
                   <Image
-                    src={withBasePath("/images/PrasadAdhau.png")}
+                    src={withBasePath("/images/Profile.png")}
                     alt="Prasad - Data Engineer"
                     fill
-                    className="object-cover"
+                    className="object-cover object-[center_16%] scale-110"
                     priority
                   />
                 </div>

@@ -2,7 +2,7 @@ import { Header } from "@/components/portfolio/header"
 import { Hero } from "@/components/portfolio/hero"
 import { About } from "@/components/portfolio/about"
 import { Experience } from "@/components/portfolio/experience"
-import { Contact } from "@/components/portfolio/contact"
+import { MessagePanel } from "@/components/messagepanel"
 import { Footer } from "@/components/portfolio/footer"
 
 export default function Portfolio() {
@@ -12,7 +12,7 @@ export default function Portfolio() {
       <Hero />
       <About />
       <Experience />
-      <Contact />
+      <MessagePanel />
       <Footer />
     </main>
   )
