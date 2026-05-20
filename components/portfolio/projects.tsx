@@ -8,6 +8,33 @@ import { Github, ExternalLink, Database, Cloud, BarChart3, Workflow } from "luci
 
 const projects = [
   {
+    title: "Walmart Sales Forecasting with PySpark and XAI",
+    description:
+      "Developed an end-to-end retail sales forecasting pipeline using PySpark and machine learning to predict Walmart weekly sales across stores and departments using historical sales, store metadata, and external economic indicators. Engineered scalable data preprocessing and feature engineering workflows, implemented ensemble regression models, and integrated SHAP and LIME-based Explainable AI to uncover key business drivers, improve model transparency, and enable data-driven retail decision-making.",
+    category: "Retail Forecasting",
+    icon: Database,
+    tags: [
+      "Python",
+      "PySpark",
+      "Machine Learning",
+      "XAI",
+      "SHAP",
+      "LIME",
+      "Scikit-learn",
+      "Random Forest",
+      "Gradient Boosted Trees",
+      "Pandas",
+      "NumPy",
+      "Feature Engineering",
+      "Regression Modeling",
+      "Retail Analytics",
+      "Data Visualization",
+      "EDA",
+    ],
+    githubUrl: "https://github.com/PrasadAdhau/Walmart-Sales-Forecasting/tree/main",
+    image: "/images/walmart.png",
+  },
+  {
     title: "NeuroExplain: Explainable Brain Tumor Analysis",
     description:
       "Built an end-to-end AI-powered medical imaging system for brain tumor segmentation and explainable diagnosis using 3D U-Net, Grad-CAM, and RAG-based LLM reporting. Designed scalable deep learning pipelines for MRI analysis, automated report generation, and clinically interpretable visual explanations aligned with tumor regions.",
