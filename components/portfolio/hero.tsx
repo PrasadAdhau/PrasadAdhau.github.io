@@ -6,12 +6,11 @@ import { useTypewriter } from "@/hooks/use-typewriter"
 import { Motion } from "@/components/motion"
 import { Button } from "@/components/ui/button"
 import { withBasePath } from "@/lib/paths"
-import { Github, Linkedin, Mail, MessageCircle } from "lucide-react"
+import { Github, Linkedin, MessageCircle } from "lucide-react"
 
 const socialLinks = [
   { icon: Linkedin, href: "https://linkedin.com/in/prasadadhau", label: "LinkedIn" },
   { icon: Github, href: "https://github.com/prasadadhau", label: "GitHub" },
-  { icon: Mail, href: "mailto:prasad.adhau02@gmail.com", label: "Email" },
 ]
 
 export function Hero() {
