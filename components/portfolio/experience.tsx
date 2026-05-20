@@ -12,24 +12,32 @@ const workExperience = [
     company: "Rochester Institute of Technology",
     period: "Aug 2024 - Dec 2025",
     logoSrc: "/images/Rochester_Institute_of_Technology_seal.png",
+    description:
+      "Mentored and guided students in databases, data modeling, SQL, and exploratory data analysis while simplifying complex technical concepts into practical, real-world applications. Streamlined grading and academic workflows, improving efficiency and supporting data-focused coursework at scale.",
   },
   {
     title: "Senior Engineer",
     company: "Nagarro",
     period: "Mar 2024 - Jun 2024",
     logoSrc: "/images/nagarro.png",
+    description:
+      "Led optimization efforts for enterprise-scale data systems and ETL workflows, improving reporting reliability, performance, and operational efficiency. Collaborated across cross-functional teams to resolve critical data challenges, automate processes, and enhance scalability of data operations.",
   },
   {
     title: "Data Engineer",
     company: "Accenture",
     period: "Dec 2020 - Mar 2024",
     logoSrc: "/images/accenture-logo-0.png",
+    description:
+      "Designed and engineered scalable cloud-native data pipelines and analytics platforms on GCP and AWS, processing high-volume datasets for enterprise reporting and business intelligence. Built automated ETL/ELT workflows, optimized SQL and PySpark processing, implemented data quality frameworks, and delivered reliable data systems supporting analytics and AI-driven decision-making.",
   },
   {
-    title: "Software Engineer Intern",
+    title: "Frontend Developer Intern",
     company: "Techwalnut Innovations LLP",
     period: "Jul 2019 - Dec 2019",
     logoSrc: "/images/techwalnut.jpeg",
+    description:
+      "Developed responsive and user-centric frontend interfaces while collaborating closely with developers and stakeholders to improve usability, performance, and overall user experience. Contributed to scalable UI implementation, debugging, and feature enhancements across web applications.",
   },
 ]
 
@@ -58,6 +66,7 @@ function JourneyEntry({
   logoSrc,
   status,
   award,
+  description,
   side,
 }: {
   title: string
@@ -66,6 +75,7 @@ function JourneyEntry({
   logoSrc?: string
   status?: string
   award?: string
+  description?: string
   side?: "left" | "right"
 }) {
   const useContainLogo =
@@ -115,6 +125,7 @@ function JourneyEntry({
               <span className="font-medium text-foreground">Award:</span> {award}
             </p>
           )}
+          {description && <p className="text-sm text-muted-foreground mt-3 leading-relaxed">{description}</p>}
         </div>
       </div>
     </div>
@@ -183,6 +194,7 @@ export function Experience() {
                         organization={item.company}
                         period={item.period}
                         logoSrc={item.logoSrc}
+                        description={item.description}
                       />
                     )}
                   </div>
