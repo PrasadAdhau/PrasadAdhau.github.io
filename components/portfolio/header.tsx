@@ -30,23 +30,35 @@ export function Header() {
   useEffect(() => {
     setMounted(true)
 
-    if (pathname === "/") {
-      if ("scrollRestoration" in window.history) {
-        window.history.scrollRestoration = "manual"
-      }
-      const currentHash = window.location.hash
-      if (currentHash) {
-        const target = document.querySelector(currentHash)
-        if (target) {
-          target.scrollIntoView({ behavior: "instant" })
-          setActiveHash(currentHash)
-        }
-      } else {
-        window.scrollTo({ top: 0, left: 0, behavior: "instant" })
-        setActiveHash("#home")
-      }
+    if (pathname !== "/") {
+      setActiveHash("")
+      return
     }
 
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual"
+    }
+
+    const scrollToHash = (hash: string) => {
+      const target = document.querySelector(hash)
+      if (!target) return false
+
+      target.scrollIntoView({ behavior: "instant" })
+      setActiveHash(hash)
+      return true
+    }
+
+    const currentHash = window.location.hash || "#home"
+    if (currentHash === "#home") {
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" })
+      setActiveHash("#home")
+    } else if (!scrollToHash(currentHash)) {
+      const timer = window.setTimeout(() => scrollToHash(currentHash), 100)
+      return () => window.clearTimeout(timer)
+    }
+  }, [pathname])
+
+  useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
 
@@ -64,19 +76,10 @@ export function Header() {
         setActiveHash(`#${currentSection}`)
       }
     }
-    window.addEventListener("scroll", handleScroll)
-    if (pathname !== "/") {
-      handleScroll()
-    }
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [pathname])
 
-  useEffect(() => {
-    if (pathname !== "/") {
-      setActiveHash("")
-      return
-    }
-    setActiveHash("#home")
+    window.addEventListener("scroll", handleScroll)
+    handleScroll()
+    return () => window.removeEventListener("scroll", handleScroll)
   }, [pathname])
 
   const scrollToSection = (href: string) => {
@@ -87,7 +90,7 @@ export function Header() {
     }
 
     if (href.startsWith("#") && pathname !== "/") {
-      router.push(`/${href}`)
+      window.location.href = `/${href}`
       setIsMobileMenuOpen(false)
       return
     }
@@ -95,6 +98,7 @@ export function Header() {
     const element = document.querySelector(href)
     if (element) {
       element.scrollIntoView({ behavior: "smooth" })
+      window.history.replaceState(null, "", href)
       setActiveHash(href)
     }
     setIsMobileMenuOpen(false)
