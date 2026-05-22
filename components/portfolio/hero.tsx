@@ -9,7 +9,7 @@ import { withBasePath } from "@/lib/paths"
 import { Github, Linkedin, MessageCircle } from "lucide-react"
 
 const socialLinks = [
-  { icon: Linkedin, href: "https://linkedin.com/in/prasadadhau", label: "LinkedIn" },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/adhauprasad/", label: "LinkedIn" },
   { icon: Github, href: "https://github.com/prasadadhau", label: "GitHub" },
 ]
 
