@@ -5,19 +5,42 @@ import { Cloud, Code, Briefcase } from "lucide-react"
 
 const skillCategories = [
   {
-    title: "Programming & ML",
+    title: "Programming & Frameworks",
     items: [
       "Python",
       "C++",
       "SQL",
       "JavaScript",
-      "Apache PySpark",
+      "Node.js",
+      "React",
       "Shell-scripting",
       "Linux",
     ],
   },
   {
-    title: "Data Analysis & Visualization",
+    title: "Data Engineering & Big Data",
+    items: [
+      "Apache PySpark",
+      "ETL/ELT Pipelines",
+      "Apache Airflow",
+      "Databricks",
+      "dbt",
+      "Data Warehousing",
+      "Big Data",
+    ],
+  },
+  {
+    title: "Databases & Storage",
+    items: [
+      "PostgreSQL",
+      "MySQL",
+      "MongoDB",
+      "Neo4j",
+      "NoSQL",
+    ],
+  },
+  {
+    title: "Analytics & Machine Learning",
     items: [
       "Pandas",
       "NumPy",
@@ -29,30 +52,23 @@ const skillCategories = [
     ],
   },
   {
-    title: "Databases & Big Data",
-    items: [
-      "MySQL",
-      "NoSQL",
-      "Data Warehousing",
-      "ETL/ELT Pipelines",
-      "Apache Airflow",
-      "Databricks",
-      "dbt",
-    ],
-  },
-  {
-    title: "Cloud & DevOps",
+    title: "Cloud, DevOps & Architecture",
     items: [
       "GCP",
       "AWS",
       "GitHub",
+      "Docker",
+      "Kubernetes",
+      "System Design",
+      "Agile",
+      "SDLC",
       "CI/CD Pipelines",
       "Process Automation",
       "Monitoring",
     ],
   },
   {
-    title: "AI Tools",
+    title: "AI Tools & Delivery",
     items: ["Claude", "Chatgpt", "Cursor"],
   },
 ]
