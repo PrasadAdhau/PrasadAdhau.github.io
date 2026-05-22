@@ -34,9 +34,17 @@ export function Header() {
       if ("scrollRestoration" in window.history) {
         window.history.scrollRestoration = "manual"
       }
-      window.history.replaceState(null, "", window.location.pathname)
-      window.scrollTo({ top: 0, left: 0, behavior: "instant" })
-      setActiveHash("#home")
+      const currentHash = window.location.hash
+      if (currentHash) {
+        const target = document.querySelector(currentHash)
+        if (target) {
+          target.scrollIntoView({ behavior: "instant" })
+          setActiveHash(currentHash)
+        }
+      } else {
+        window.scrollTo({ top: 0, left: 0, behavior: "instant" })
+        setActiveHash("#home")
+      }
     }
 
     const handleScroll = () => {
