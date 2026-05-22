@@ -69,7 +69,7 @@ const skillCategories = [
   },
   {
     title: "AI Tools & Delivery",
-    items: ["Claude", "Chatgpt", "Cursor"],
+    items: ["Explainable AI (XAI)", "PyTorch", "RAG Pipelines", "Claude", "Chatgpt", "Cursor"],
   },
 ]
 
