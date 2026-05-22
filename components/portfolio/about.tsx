@@ -5,7 +5,7 @@ import { Cloud, Code, Briefcase } from "lucide-react"
 
 const skillCategories = [
   {
-    title: "Programming & Frameworks",
+    title: "Programming Languages & Frameworks",
     items: [
       "Python",
       "C++",
@@ -13,7 +13,7 @@ const skillCategories = [
       "JavaScript",
       "Node.js",
       "React",
-      "Shell-scripting",
+      "Shell Scripting",
       "Linux",
     ],
   },
@@ -22,11 +22,12 @@ const skillCategories = [
     items: [
       "Apache PySpark",
       "ETL/ELT Pipelines",
-      "Apache Airflow",
+      "Airflow",
       "Databricks",
       "dbt",
       "Data Warehousing",
       "Big Data",
+      "Data Modeling",
     ],
   },
   {
@@ -40,36 +41,38 @@ const skillCategories = [
     ],
   },
   {
-    title: "Analytics & Machine Learning",
+    title: "Machine Learning, AI & Analytics",
     items: [
+      "PyTorch",
+      "scikit-learn",
+      "Explainable AI (XAI)",
+      "RAG Pipelines",
       "Pandas",
       "NumPy",
       "Matplotlib",
       "Seaborn",
-      "scikit-learn",
       "Tableau",
       "Power BI",
+      "Feature Engineering",
+      "Data Analysis",
     ],
   },
   {
-    title: "Cloud, DevOps & Architecture",
+    title: "Cloud, DevOps & Infrastructure",
     items: [
       "GCP",
       "AWS",
-      "GitHub",
       "Docker",
       "Kubernetes",
-      "System Design",
-      "Agile",
-      "SDLC",
+      "GitHub",
       "CI/CD Pipelines",
-      "Process Automation",
       "Monitoring",
+      "Process Automation",
     ],
   },
   {
-    title: "AI Tools & Delivery",
-    items: ["Explainable AI (XAI)", "PyTorch", "RAG Pipelines", "Claude", "Chatgpt", "Cursor"],
+    title: "Software Engineering & AI Tools",
+    items: ["System Design", "Agile", "SDLC", "Claude", "ChatGPT", "Cursor"],
   },
 ]
 
