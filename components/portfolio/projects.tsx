@@ -4,9 +4,39 @@ import Image from "next/image"
 import { Motion } from "@/components/motion"
 import { Button } from "@/components/ui/button"
 import { withBasePath } from "@/lib/paths"
-import { Github, ExternalLink, Database, Cloud, BarChart3, Workflow } from "lucide-react"
+import { Github, Database, Cloud, BarChart3, Workflow, Calendar } from "lucide-react"
 
 const projects = [
+  {
+    title: "NeuroExplain: Explainable Brain Tumor Analysis",
+    description:
+      "Built an end-to-end AI-powered medical imaging system for brain tumor segmentation and explainable diagnosis using 3D U-Net, Grad-CAM, and RAG-based LLM reporting. Designed scalable deep learning pipelines for MRI analysis, automated report generation, and clinically interpretable visual explanations aligned with tumor regions.",
+    category: "AI + Medical Imaging",
+    icon: Workflow,
+    tags: [
+      "Deep Learning",
+      "3D U-Net",
+      "LLMs",
+      "RAG",
+      "PyTorch",
+      "Explainable AI (XAI)",
+      "Medical Imaging",
+      "Computer Vision",
+      "Python",
+    ],
+    githubUrl: "#",
+    image: "/images/NeuroExplain.png",
+  },
+  {
+    title: "Amazon Review Sentiment Analyzer",
+    description:
+      "Developed an NLP-based sentiment analysis platform to process large-scale customer reviews using BERT and aspect-based analysis. Built real-time inference workflows and interactive Python GUIs to identify customer sentiment patterns, recurring feedback themes, and product insights from 50K+ reviews.",
+    category: "NLP",
+    icon: Cloud,
+    tags: ["Python", "BERT", "Hugging Face", "NLP", "TF-IDF", "scikit-learn", "Pandas", "Matplotlib", "Tkinter"],
+    githubUrl: "https://github.com/PrasadAdhau/scamazon-sentiment",
+    image: "/images/scamazon.png",
+  },
   {
     title: "Walmart Sales Forecasting with PySpark and XAI",
     description:
@@ -35,29 +65,9 @@ const projects = [
     image: "/images/walmart.png",
   },
   {
-    title: "NeuroExplain: Explainable Brain Tumor Analysis",
-    description:
-      "Built an end-to-end AI-powered medical imaging system for brain tumor segmentation and explainable diagnosis using 3D U-Net, Grad-CAM, and RAG-based LLM reporting. Designed scalable deep learning pipelines for MRI analysis, automated report generation, and clinically interpretable visual explanations aligned with tumor regions.",
-    category: "AI + Medical Imaging",
-    icon: Workflow,
-    tags: ["Python", "PyTorch", "MONAI", "3D U-Net", "Grad-CAM", "LLMs", "RAG", "Hugging Face", "Medical Imaging", "NumPy"],
-    githubUrl: "#",
-    image: "/images/NeuroExplain.png",
-  },
-  {
-    title: "Amazon Review Sentiment Analyzer",
-    description:
-      "Developed an NLP-based sentiment analysis platform to process large-scale customer reviews using BERT and aspect-based analysis. Built real-time inference workflows and interactive Python GUIs to identify customer sentiment patterns, recurring feedback themes, and product insights from 50K+ reviews.",
-    category: "NLP",
-    icon: Cloud,
-    tags: ["Python", "BERT", "Hugging Face", "NLP", "TF-IDF", "scikit-learn", "Pandas", "Matplotlib", "Tkinter"],
-    githubUrl: "https://github.com/PrasadAdhau/scamazon-sentiment",
-    image: "/images/scamazon.png",
-  },
-  {
     title: "Flight Network Dashboard",
     description:
-      "Created an interactive graph analytics dashboard to visualize airport connectivity and route networks using Neo4j and D3.js. Implemented dynamic Cypher-based querying, real-time filtering, and advanced graph interactions including zoom, pan, and tooltips for large-scale network exploration.",
+      "Developed an interactive graph analytics dashboard to visualize large-scale airport connectivity and flight route networks using Neo4j, Cypher, D3.js, JavaScript, and Node.js. Built dynamic graph querying and real-time filtering workflows to analyze 46K+ flight routes and complex airport relationships, enabling efficient network exploration and route pattern analysis through advanced graph interactions including zoom, pan, tooltips, and node-level relationship visualization. Optimized frontend rendering and graph interaction performance by 40%, improving usability and responsiveness for large-scale graph datasets and real-time user-driven analytics.",
     category: "Graph Analytics",
     icon: BarChart3,
     tags: ["Neo4j", "Cypher", "JavaScript", "D3.js", "Node.js", "Graph Databases", "HTML/CSS"],
@@ -73,6 +83,27 @@ const projects = [
     tags: ["Python", "Random Forest", "XGBoost", "scikit-learn", "SMOTE", "Pandas", "NumPy", "Machine Learning", "Data Analysis"],
     githubUrl: "https://github.com/PrasadAdhau/Diabetic-Readmission-Prediction",
     image: "/images/prediction.jpeg",
+  },
+  {
+    title: "Supermarket Sales Analysis",
+    period: "Nov 2024 – Dec 2024",
+    description:
+      "Analyzed supermarket sales data across multiple retail branches to identify key business drivers, customer purchasing trends, and branch-level performance patterns using statistical analysis techniques. Applied ANOVA, regression analysis, and Chi-square testing in Minitab to evaluate relationships between sales, customer behavior, product categories, and operational variables, enabling data-driven recommendations to improve sales strategy and branch performance.",
+    category: "Retail Analytics",
+    icon: BarChart3,
+    tags: [
+      "Data Analysis",
+      "Statistical Modeling",
+      "Regression Analysis",
+      "ANOVA",
+      "Chi-Square Testing",
+      "Minitab",
+      "Retail Analytics",
+      "Business Intelligence",
+      "Data Visualization",
+      "Sales Analytics",
+    ],
+    image: "/images/sales_analytics.webp",
   },
 ]
 
@@ -125,6 +156,12 @@ export function Projects() {
                   <h3 className="text-xl font-semibold text-foreground mb-2 group-hover:text-brand-accent transition-colors">
                     {project.title}
                   </h3>
+                  {"period" in project && project.period && (
+                    <p className="text-muted-foreground text-sm mb-2 inline-flex items-center gap-1.5">
+                      <Calendar className="w-4 h-4" />
+                      {project.period}
+                    </p>
+                  )}
                   <p className="text-muted-foreground text-sm mb-4 leading-relaxed">
                     {project.description}
                   </p>
@@ -142,23 +179,25 @@ export function Projects() {
                   </div>
 
                   {/* Actions */}
-                  <div className="flex gap-3 mt-auto">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="w-full group/btn bg-transparent text-brand-accent border-brand-accent/40 hover:border-brand-accent hover:text-brand-accent hover:bg-brand-accent/10"
-                      asChild
-                    >
-                      <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                  {"githubUrl" in project && project.githubUrl && (
+                    <div className="flex gap-3 mt-auto">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="w-full group/btn bg-transparent text-brand-accent border-brand-accent/40 hover:border-brand-accent hover:text-brand-accent hover:bg-brand-accent/10"
+                        asChild
                       >
-                        <Github className="w-4 h-4 mr-2 group-hover/btn:rotate-12 transition-transform" />
-                        View on GitHub
-                      </a>
-                    </Button>
-                  </div>
+                        <a
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <Github className="w-4 h-4 mr-2 group-hover/btn:rotate-12 transition-transform" />
+                          View on GitHub
+                        </a>
+                      </Button>
+                    </div>
+                  )}
                 </div>
               </div>
             </Motion>

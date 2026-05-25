@@ -28,6 +28,10 @@ const workExperience = [
     company: "Accenture",
     period: "Dec 2020 - Mar 2024",
     logoSrc: "/images/accenture-logo-0.png",
+    award: [
+      "Certificate of Excellence in BigQuery",
+      "Self-Starter Award for Client Value Creation",
+    ],
     description:
       "Designed and engineered scalable cloud-native data pipelines and analytics platforms on GCP and AWS, processing high-volume datasets for enterprise reporting and business intelligence. Built automated ETL/ELT workflows, optimized SQL and PySpark processing, implemented data quality frameworks, and delivered reliable data systems supporting analytics and AI-driven decision-making.",
   },
@@ -48,6 +52,8 @@ const education = [
     period: "Aug 2024 - May 2026",
     status: "Completed",
     award: "Debbie Cahn Memorial Scholarship Awardee",
+    research:
+      'Published research paper titled "Reasoning LLM-based Security Policy Generation for the I2NSF Framework" at the KICS Winter Conference 2026 with Sungkyunkwan University (SKKU), South Korea.',
     logoSrc: "/images/Rochester_Institute_of_Technology_seal.png",
   },
   {
@@ -66,6 +72,7 @@ function JourneyEntry({
   logoSrc,
   status,
   award,
+  research,
   description,
   side,
 }: {
@@ -74,7 +81,8 @@ function JourneyEntry({
   period: string
   logoSrc?: string
   status?: string
-  award?: string
+  award?: string | string[]
+  research?: string
   description?: string
   side?: "left" | "right"
 }) {
@@ -121,8 +129,24 @@ function JourneyEntry({
             )}
           </div>
           {award && (
+            <div className="text-sm text-muted-foreground mt-2">
+              <span className="font-medium text-foreground">
+                {Array.isArray(award) && award.length > 1 ? "Awards:" : "Award:"}
+              </span>{" "}
+              {Array.isArray(award) ? (
+                <ul className="mt-1 list-disc pl-5 space-y-1">
+                  {award.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              ) : (
+                award
+              )}
+            </div>
+          )}
+          {research && (
             <p className="text-sm text-muted-foreground mt-2">
-              <span className="font-medium text-foreground">Award:</span> {award}
+              <span className="font-medium text-foreground">Research:</span> {research}
             </p>
           )}
           {description && <p className="text-sm text-muted-foreground mt-3 leading-relaxed">{description}</p>}
@@ -187,6 +211,7 @@ export function Experience() {
                         logoSrc={item.logoSrc}
                         status={item.status}
                         award={item.award}
+                        research={"research" in item ? item.research : undefined}
                       />
                     ) : (
                       <JourneyEntry
@@ -194,6 +219,7 @@ export function Experience() {
                         organization={item.company}
                         period={item.period}
                         logoSrc={item.logoSrc}
+                        award={"award" in item ? item.award : undefined}
                         description={item.description}
                       />
                     )}
