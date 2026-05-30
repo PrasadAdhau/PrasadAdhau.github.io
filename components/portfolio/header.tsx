@@ -6,9 +6,7 @@ import { usePathname, useRouter } from "next/navigation"
 import { Moon, Sun, Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { withBasePath } from "@/lib/paths"
-
-const RESUME_URL = withBasePath("/Prasad_Adhau_Resume.pdf")
+import { RESUME_URL } from "@/lib/paths"
 
 const navLinks = [
   { name: "Home", href: "#home" },

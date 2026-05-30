@@ -3,10 +3,8 @@
 import Image from "next/image"
 import { Motion } from "@/components/motion"
 import { Button } from "@/components/ui/button"
-import { withBasePath } from "@/lib/paths"
+import { RESUME_URL, withBasePath } from "@/lib/paths"
 import { Download } from "lucide-react"
-
-const RESUME_URL = withBasePath("/Prasad_Adhau_Resume.pdf")
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
